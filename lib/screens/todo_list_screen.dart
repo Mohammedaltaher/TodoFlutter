@@ -93,6 +93,16 @@ class _TodoListScreenState extends State<TodoListScreen> {
     }
   }
 
+  Future<void> _reorderTodos(int oldIndex, int newIndex) async {
+    // Only allow reordering when showing all todos
+    if (_filter != 'all') {
+      return;
+    }
+    
+    await _todoService.reorderTodos(oldIndex, newIndex);
+    await _loadTodos();
+  }
+
   void _showAddTodoDialog() {
     showDialog(
       context: context,
@@ -106,7 +116,16 @@ class _TodoListScreenState extends State<TodoListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Todo List'),
+        title: Column(
+          children: [
+            const Text('Todo List'),
+            if (_filter == 'all')
+              const Text(
+                'Long press to reorder',
+                style: TextStyle(fontSize: 12, fontWeight: FontWeight.normal),
+              ),
+          ],
+        ),
         centerTitle: true,
         actions: [
           PopupMenuButton<String>(
@@ -162,7 +181,7 @@ class _TodoListScreenState extends State<TodoListScreen> {
         icon = Icons.radio_button_unchecked;
         break;
       default:
-        message = 'No todos yet.\nTap the + button to add your first todo!';
+        message = 'Welcome to your Todo List!\nTap the + button to add your first todo!\n\nTip: Long press any item to reorder.';
         icon = Icons.add_task;
     }
 
@@ -191,21 +210,45 @@ class _TodoListScreenState extends State<TodoListScreen> {
   }
 
   Widget _buildTodoList() {
-    return RefreshIndicator(
-      onRefresh: _loadTodos,
-      child: ListView.builder(
-        padding: const EdgeInsets.all(16),
-        itemCount: _filteredTodos.length,
-        itemBuilder: (context, index) {
-          final todo = _filteredTodos[index];
-          return TodoItem(
-            todo: todo,
-            onToggle: () => _toggleTodo(todo.id),
-            onDelete: () => _deleteTodo(todo.id),
-            onEdit: () => _editTodo(todo),
-          );
-        },
-      ),
-    );
+    // Only enable reordering when showing all todos
+    if (_filter == 'all') {
+      return RefreshIndicator(
+        onRefresh: _loadTodos,
+        child: ReorderableListView.builder(
+          padding: const EdgeInsets.all(16),
+          itemCount: _filteredTodos.length,
+          onReorder: _reorderTodos,
+          itemBuilder: (context, index) {
+            final todo = _filteredTodos[index];
+            return TodoItem(
+              key: ValueKey(todo.id),
+              todo: todo,
+              onToggle: () => _toggleTodo(todo.id),
+              onDelete: () => _deleteTodo(todo.id),
+              onEdit: () => _editTodo(todo),
+            );
+          },
+        ),
+      );
+    } else {
+      // Use regular ListView when filtering is active
+      return RefreshIndicator(
+        onRefresh: _loadTodos,
+        child: ListView.builder(
+          padding: const EdgeInsets.all(16),
+          itemCount: _filteredTodos.length,
+          itemBuilder: (context, index) {
+            final todo = _filteredTodos[index];
+            return TodoItem(
+              key: ValueKey(todo.id),
+              todo: todo,
+              onToggle: () => _toggleTodo(todo.id),
+              onDelete: () => _deleteTodo(todo.id),
+              onEdit: () => _editTodo(todo),
+            );
+          },
+        ),
+      );
+    }
   }
 }

@@ -5,6 +5,7 @@ class Todo {
   String title;
   String description;
   bool isCompleted;
+  int order;
   DateTime createdAt;
   DateTime? completedAt;
 
@@ -13,6 +14,7 @@ class Todo {
     required this.title,
     this.description = '',
     this.isCompleted = false,
+    this.order = 0,
     DateTime? createdAt,
     this.completedAt,
   })  : id = id ?? _generateId(),
@@ -31,6 +33,7 @@ class Todo {
       'title': title,
       'description': description,
       'isCompleted': isCompleted,
+      'order': order,
       'createdAt': createdAt.millisecondsSinceEpoch,
       'completedAt': completedAt?.millisecondsSinceEpoch,
     };
@@ -43,6 +46,7 @@ class Todo {
       title: map['title'],
       description: map['description'] ?? '',
       isCompleted: map['isCompleted'] ?? false,
+      order: map['order'] ?? 0,
       createdAt: DateTime.fromMillisecondsSinceEpoch(map['createdAt']),
       completedAt: map['completedAt'] != null
           ? DateTime.fromMillisecondsSinceEpoch(map['completedAt'])
@@ -55,6 +59,7 @@ class Todo {
     String? title,
     String? description,
     bool? isCompleted,
+    int? order,
     DateTime? completedAt,
   }) {
     return Todo(
@@ -62,6 +67,7 @@ class Todo {
       title: title ?? this.title,
       description: description ?? this.description,
       isCompleted: isCompleted ?? this.isCompleted,
+      order: order ?? this.order,
       createdAt: createdAt,
       completedAt: completedAt ?? this.completedAt,
     );
