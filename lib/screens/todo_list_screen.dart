@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../models/todo.dart';
 import '../services/todo_service.dart';
 import '../widgets/todo_item.dart';
 import '../widgets/add_todo_dialog.dart';
+import '../l10n/app_localizations.dart';
+import '../providers/language_provider.dart';
 
 class TodoListScreen extends StatefulWidget {
   const TodoListScreen({super.key});
@@ -39,8 +42,9 @@ class _TodoListScreenState extends State<TodoListScreen> {
         _isLoading = false;
       });
       if (mounted) {
+        final localizations = AppLocalizations.of(context)!;
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Error loading todos: $e')),
+          SnackBar(content: Text(localizations.errorLoadingTodos(e.toString()))),
         );
       }
     }
@@ -114,11 +118,13 @@ class _TodoListScreenState extends State<TodoListScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final localizations = AppLocalizations.of(context)!;
+    
     return Scaffold(
       appBar: AppBar(
         title: Column(
           children: [
-            const Text('Todo List'),
+            Text(localizations.appTitle),
             if (_filter == 'all')
               const Text(
                 'Long press to reorder',
@@ -128,6 +134,13 @@ class _TodoListScreenState extends State<TodoListScreen> {
         ),
         centerTitle: true,
         actions: [
+          IconButton(
+            icon: const Icon(Icons.language),
+            onPressed: () {
+              Provider.of<LanguageProvider>(context, listen: false).toggleLanguage();
+            },
+            tooltip: localizations.toggleLanguage,
+          ),
           PopupMenuButton<String>(
             onSelected: (value) {
               setState(() {
@@ -135,17 +148,17 @@ class _TodoListScreenState extends State<TodoListScreen> {
               });
             },
             itemBuilder: (context) => [
-              const PopupMenuItem(
+              PopupMenuItem(
                 value: 'all',
-                child: Text('All'),
+                child: Text(localizations.allTodos),
               ),
-              const PopupMenuItem(
+              PopupMenuItem(
                 value: 'active',
-                child: Text('Active'),
+                child: Text(localizations.activeTodos),
               ),
-              const PopupMenuItem(
+              PopupMenuItem(
                 value: 'completed',
-                child: Text('Completed'),
+                child: Text(localizations.completedTodos),
               ),
             ],
             child: const Padding(
@@ -168,20 +181,21 @@ class _TodoListScreenState extends State<TodoListScreen> {
   }
 
   Widget _buildEmptyState() {
+    final localizations = AppLocalizations.of(context)!;
     String message;
     IconData icon;
 
     switch (_filter) {
       case 'active':
-        message = 'No active todos!\nAll tasks are completed.';
+        message = localizations.noActiveTodos;
         icon = Icons.check_circle_outline;
         break;
       case 'completed':
-        message = 'No completed todos yet.\nStart completing some tasks!';
+        message = localizations.noCompletedTodos;
         icon = Icons.radio_button_unchecked;
         break;
       default:
-        message = 'Welcome to your Todo List!\nTap the + button to add your first todo!\n\nTip: Long press any item to reorder.';
+        message = localizations.welcomeMessage;
         icon = Icons.add_task;
     }
 

@@ -1,0 +1,134 @@
+{
+  "appTitle": "Todo List",
+  "@appTitle": {
+    "description": "The title of the application"
+  },
+  "addNewTodo": "Add New Todo",
+  "@addNewTodo": {
+    "description": "Title for adding a new todo"
+  },
+  "editTodo": "Edit Todo",
+  "@editTodo": {
+    "description": "Title for editing a todo"
+  },
+  "title": "Title",
+  "@title": {
+    "description": "Label for title field"
+  },
+  "description": "Description (optional)",
+  "@description": {
+    "description": "Label for description field"
+  },
+  "cancel": "Cancel",
+  "@cancel": {
+    "description": "Cancel button text"
+  },
+  "add": "Add",
+  "@add": {
+    "description": "Add button text"
+  },
+  "update": "Update",
+  "@update": {
+    "description": "Update button text"
+  },
+  "pleaseEnterTitle": "Please enter a title",
+  "@pleaseEnterTitle": {
+    "description": "Validation message for empty title"
+  },
+  "allTodos": "All",
+  "@allTodos": {
+    "description": "Filter option for all todos"
+  },
+  "activeTodos": "Active",
+  "@activeTodos": {
+    "description": "Filter option for active todos"
+  },
+  "completedTodos": "Completed",
+  "@completedTodos": {
+    "description": "Filter option for completed todos"
+  },
+  "noTodosFound": "No todos found",
+  "@noTodosFound": {
+    "description": "Message when no todos are available"
+  },
+  "noActiveTodos": "No active todos!\nAll tasks are completed.",
+  "@noActiveTodos": {
+    "description": "Message when no active todos are available"
+  },
+  "noCompletedTodos": "No completed todos yet.\nStart completing some tasks!",
+  "@noCompletedTodos": {
+    "description": "Message when no completed todos are available"
+  },
+  "welcomeMessage": "Welcome to your Todo List!\nTap the + button to add your first todo!\n\nTip: Long press any item to reorder.",
+  "@welcomeMessage": {
+    "description": "Welcome message for new users"
+  },
+  "addYourFirstTodo": "Add your first todo!",
+  "@addYourFirstTodo": {
+    "description": "Message encouraging to add first todo"
+  },
+  "errorLoadingTodos": "Error loading todos: {error}",
+  "@errorLoadingTodos": {
+    "description": "Error message when loading todos fails",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "description": "The error message"
+      }
+    }
+  },
+  "errorAddingTodo": "Error adding todo: {error}",
+  "@errorAddingTodo": {
+    "description": "Error message when adding todo fails",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "description": "The error message"
+      }
+    }
+  },
+  "errorUpdatingTodo": "Error updating todo: {error}",
+  "@errorUpdatingTodo": {
+    "description": "Error message when updating todo fails",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "description": "The error message"
+      }
+    }
+  },
+  "errorDeletingTodo": "Error deleting todo: {error}",
+  "@errorDeletingTodo": {
+    "description": "Error message when deleting todo fails",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "description": "The error message"
+      }
+    }
+  },
+  "delete": "Delete",
+  "@delete": {
+    "description": "Delete button text"
+  },
+  "edit": "Edit",
+  "@edit": {
+    "description": "Edit button text"
+  },
+  "confirmDelete": "Are you sure you want to delete this todo?",
+  "@confirmDelete": {
+    "description": "Confirmation message for deleting a todo"
+  },
+  "yes": "Yes",
+  "@yes": {
+    "description": "Yes button text"
+  },
+  "no": "No",
+  "@no": {
+    "description": "No button text"
+  },
+  "toggleLanguage": "Toggle Language",
+  "@toggleLanguage": {
+    "description": "Tooltip for language toggle button"
+  }
+}

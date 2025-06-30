@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/todo.dart';
+import '../l10n/app_localizations.dart';
 
 class TodoItem extends StatelessWidget {
   final Todo todo;
@@ -55,12 +56,12 @@ class TodoItem extends StatelessWidget {
             IconButton(
               icon: const Icon(Icons.edit, color: Colors.blue),
               onPressed: onEdit,
-              tooltip: 'Edit',
+              tooltip: AppLocalizations.of(context)!.edit,
             ),
             IconButton(
               icon: const Icon(Icons.delete, color: Colors.red),
               onPressed: () => _showDeleteConfirmation(context),
-              tooltip: 'Delete',
+              tooltip: AppLocalizations.of(context)!.delete,
             ),
           ],
         ),
@@ -70,15 +71,17 @@ class TodoItem extends StatelessWidget {
   }
 
   void _showDeleteConfirmation(BuildContext context) {
+    final localizations = AppLocalizations.of(context)!;
+    
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Delete Todo'),
-        content: Text('Are you sure you want to delete "${todo.title}"?'),
+        title: Text(localizations.delete),
+        content: Text(localizations.confirmDelete),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(),
-            child: const Text('Cancel'),
+            child: Text(localizations.cancel),
           ),
           TextButton(
             onPressed: () {
@@ -86,7 +89,7 @@ class TodoItem extends StatelessWidget {
               onDelete();
             },
             style: TextButton.styleFrom(foregroundColor: Colors.red),
-            child: const Text('Delete'),
+            child: Text(localizations.delete),
           ),
         ],
       ),

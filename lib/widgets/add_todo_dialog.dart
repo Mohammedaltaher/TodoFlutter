@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../l10n/app_localizations.dart';
 
 class AddTodoDialog extends StatefulWidget {
   final Function(String title, String description)? onSubmit;
@@ -56,8 +57,10 @@ class _AddTodoDialogState extends State<AddTodoDialog> {
 
   @override
   Widget build(BuildContext context) {
+    final localizations = AppLocalizations.of(context)!;
+    
     return AlertDialog(
-      title: Text(widget.isEditing ? 'Edit Todo' : 'Add New Todo'),
+      title: Text(widget.isEditing ? localizations.editTodo : localizations.addNewTodo),
       content: Form(
         key: _formKey,
         child: Column(
@@ -65,13 +68,13 @@ class _AddTodoDialogState extends State<AddTodoDialog> {
           children: [
             TextFormField(
               controller: _titleController,
-              decoration: const InputDecoration(
-                labelText: 'Title',
-                border: OutlineInputBorder(),
+              decoration: InputDecoration(
+                labelText: localizations.title,
+                border: const OutlineInputBorder(),
               ),
               validator: (value) {
                 if (value == null || value.trim().isEmpty) {
-                  return 'Please enter a title';
+                  return localizations.pleaseEnterTitle;
                 }
                 return null;
               },
@@ -80,9 +83,9 @@ class _AddTodoDialogState extends State<AddTodoDialog> {
             const SizedBox(height: 16),
             TextFormField(
               controller: _descriptionController,
-              decoration: const InputDecoration(
-                labelText: 'Description (optional)',
-                border: OutlineInputBorder(),
+              decoration: InputDecoration(
+                labelText: localizations.description,
+                border: const OutlineInputBorder(),
               ),
               maxLines: 3,
             ),
@@ -92,11 +95,11 @@ class _AddTodoDialogState extends State<AddTodoDialog> {
       actions: [
         TextButton(
           onPressed: () => Navigator.of(context).pop(),
-          child: const Text('Cancel'),
+          child: Text(localizations.cancel),
         ),
         ElevatedButton(
           onPressed: _submit,
-          child: Text(widget.isEditing ? 'Update' : 'Add'),
+          child: Text(widget.isEditing ? localizations.update : localizations.add),
         ),
       ],
     );
