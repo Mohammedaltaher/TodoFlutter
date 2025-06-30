@@ -1,0 +1,95 @@
+import 'package:flutter/material.dart';
+import '../models/todo.dart';
+
+class TodoItem extends StatelessWidget {
+  final Todo todo;
+  final VoidCallback onToggle;
+  final VoidCallback onDelete;
+  final VoidCallback onEdit;
+
+  const TodoItem({
+    super.key,
+    required this.todo,
+    required this.onToggle,
+    required this.onDelete,
+    required this.onEdit,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      margin: const EdgeInsets.only(bottom: 8),
+      elevation: 2,
+      child: ListTile(
+        leading: Checkbox(
+          value: todo.isCompleted,
+          onChanged: (_) => onToggle(),
+          activeColor: Colors.green,
+        ),
+        title: Text(
+          todo.title,
+          style: TextStyle(
+            decoration: todo.isCompleted
+                ? TextDecoration.lineThrough
+                : TextDecoration.none,
+            color: todo.isCompleted ? Colors.grey : null,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+        subtitle: todo.description.isNotEmpty
+            ? Text(
+                todo.description,
+                style: TextStyle(
+                  decoration: todo.isCompleted
+                      ? TextDecoration.lineThrough
+                      : TextDecoration.none,
+                  color: todo.isCompleted ? Colors.grey : Colors.grey[600],
+                ),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              )
+            : null,
+        trailing: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            IconButton(
+              icon: const Icon(Icons.edit, color: Colors.blue),
+              onPressed: onEdit,
+              tooltip: 'Edit',
+            ),
+            IconButton(
+              icon: const Icon(Icons.delete, color: Colors.red),
+              onPressed: () => _showDeleteConfirmation(context),
+              tooltip: 'Delete',
+            ),
+          ],
+        ),
+        onTap: onToggle,
+      ),
+    );
+  }
+
+  void _showDeleteConfirmation(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Delete Todo'),
+        content: Text('Are you sure you want to delete "${todo.title}"?'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+              onDelete();
+            },
+            style: TextButton.styleFrom(foregroundColor: Colors.red),
+            child: const Text('Delete'),
+          ),
+        ],
+      ),
+    );
+  }
+}
