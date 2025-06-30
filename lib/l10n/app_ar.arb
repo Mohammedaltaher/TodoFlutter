@@ -1,4 +1,5 @@
 {
+  "@@locale": "ar",
   "appTitle": "قائمة المهام",
   "addNewTodo": "إضافة مهمة جديدة",
   "editTodo": "تعديل المهمة",
