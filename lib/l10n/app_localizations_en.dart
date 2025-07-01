@@ -98,4 +98,22 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get toggleLanguage => 'Toggle Language';
+
+  @override
+  String get profileSettings => 'Profile & Settings';
+
+  @override
+  String get userName => 'John Doe';
+
+  @override
+  String get userEmail => 'john.doe@example.com';
+
+  @override
+  String get settings => 'Settings';
+
+  @override
+  String get language => 'Language';
+
+  @override
+  String get theme => 'Theme';
 }

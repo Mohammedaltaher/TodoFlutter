@@ -26,5 +26,11 @@
   "confirmDelete": "هل أنت متأكد من حذف هذه المهمة؟",
   "yes": "نعم",
   "no": "لا",
-  "toggleLanguage": "تبديل اللغة"
+  "toggleLanguage": "تبديل اللغة",
+  "profileSettings": "الملف الشخصي والإعدادات",
+  "userName": "جون دو",
+  "userEmail": "john.doe@example.com",
+  "settings": "الإعدادات",
+  "language": "اللغة",
+  "theme": "السمة"
 }

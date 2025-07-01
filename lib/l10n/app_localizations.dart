@@ -259,6 +259,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Toggle Language'**
   String get toggleLanguage;
+
+  /// Title for the profile and settings screen
+  ///
+  /// In en, this message translates to:
+  /// **'Profile & Settings'**
+  String get profileSettings;
+
+  /// Placeholder for user name
+  ///
+  /// In en, this message translates to:
+  /// **'John Doe'**
+  String get userName;
+
+  /// Placeholder for user email
+  ///
+  /// In en, this message translates to:
+  /// **'john.doe@example.com'**
+  String get userEmail;
+
+  /// Section title for settings
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get settings;
+
+  /// Label for language selection
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get language;
+
+  /// Label for theme selection
+  ///
+  /// In en, this message translates to:
+  /// **'Theme'**
+  String get theme;
 }
 
 class _AppLocalizationsDelegate

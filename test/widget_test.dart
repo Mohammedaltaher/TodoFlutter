@@ -1,12 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
+import 'package:provider/provider.dart';
 import 'package:todo_flutter/main.dart';
+import 'package:todo_flutter/providers/language_provider.dart';
+import 'package:todo_flutter/providers/theme_provider.dart';
 
 void main() {
   testWidgets('Todo app smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const TodoApp());
+    await tester.pumpWidget(
+      MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (context) => LanguageProvider()),
+          ChangeNotifierProvider(create: (context) => ThemeProvider()),
+        ],
+        child: const TodoApp(),
+      ),
+    );
 
     // Verify that our app starts with the correct title.
     expect(find.text('Todo List'), findsOneWidget);

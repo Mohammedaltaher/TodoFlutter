@@ -6,6 +6,7 @@ import '../widgets/todo_item.dart';
 import '../widgets/add_todo_dialog.dart';
 import '../l10n/app_localizations.dart';
 import '../providers/language_provider.dart';
+import 'user_profile_screen.dart';
 
 class TodoListScreen extends StatefulWidget {
   const TodoListScreen({super.key});
@@ -140,6 +141,16 @@ class _TodoListScreenState extends State<TodoListScreen> {
               Provider.of<LanguageProvider>(context, listen: false).toggleLanguage();
             },
             tooltip: localizations.toggleLanguage,
+          ),
+          IconButton(
+            icon: const Icon(Icons.person),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const UserProfileScreen()),
+              );
+            },
+            tooltip: localizations.profileSettings,
           ),
           PopupMenuButton<String>(
             onSelected: (value) {

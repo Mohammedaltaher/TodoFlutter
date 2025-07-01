@@ -98,4 +98,22 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get toggleLanguage => 'تبديل اللغة';
+
+  @override
+  String get profileSettings => 'الملف الشخصي والإعدادات';
+
+  @override
+  String get userName => 'جون دو';
+
+  @override
+  String get userEmail => 'john.doe@example.com';
+
+  @override
+  String get settings => 'الإعدادات';
+
+  @override
+  String get language => 'اللغة';
+
+  @override
+  String get theme => 'السمة';
 }

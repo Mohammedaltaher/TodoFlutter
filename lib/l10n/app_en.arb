@@ -131,5 +131,29 @@
   "toggleLanguage": "Toggle Language",
   "@toggleLanguage": {
     "description": "Tooltip for language toggle button"
+  },
+  "profileSettings": "Profile & Settings",
+  "@profileSettings": {
+    "description": "Title for the profile and settings screen"
+  },
+  "userName": "John Doe",
+  "@userName": {
+    "description": "Placeholder for user name"
+  },
+  "userEmail": "john.doe@example.com",
+  "@userEmail": {
+    "description": "Placeholder for user email"
+  },
+  "settings": "Settings",
+  "@settings": {
+    "description": "Section title for settings"
+  },
+  "language": "Language",
+  "@language": {
+    "description": "Label for language selection"
+  },
+  "theme": "Theme",
+  "@theme": {
+    "description": "Label for theme selection"
   }
 }
